@@ -31,7 +31,7 @@ body {
   transition: width 0.3s ease;
 }
 
-.progress-percentage {
+.progress-percent-label {
   position: absolute;
   top: 50%;
   left: 50%;
