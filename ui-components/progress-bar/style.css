@@ -10,6 +10,9 @@ body {
   padding: 0 20rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .progress-bar-container {
@@ -25,7 +28,7 @@ body {
   background-color: #76c7c0;
   width: 0%;
   border-radius: 5px;
-  transition: width 0.5s ease;
+  transition: width 0.3s ease;
 }
 
 .progress-percentage {
@@ -34,4 +37,10 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 16px;
+}
+
+.progress-button {
+  font-size: 1.5rem;
+  padding: 1rem;
+  cursor: pointer;
 }
