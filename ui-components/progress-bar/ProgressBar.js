@@ -8,16 +8,26 @@ export class ProgressBar {
     this.percentLabelEl = document.querySelector(`.${percentLabelClass}`);
   }
 
-  increaseProgressBar(percentIncrement) {
+  setBarProgress(percentProgress) {
+    this.currentBarWidth = percentProgress;
+    this.updateProgressBar();
+    this.updatePercentLabel();
+  }
+
+  increaseBarProgress(percentIncrement) {
     const newWidth = this.calculateWidth(percentIncrement, "addition");
     if (newWidth === null) return;
     this.currentBarWidth = newWidth;
-    this.progressBarEl.style.width = `${this.currentBarWidth}%`;
+    this.updateProgressBar();
     this.updatePercentLabel();
   }
 
   updatePercentLabel() {
     this.percentLabelEl.innerHTML = `${this.currentBarWidth}%`;
+  }
+
+  updateProgressBar() {
+    this.progressBarEl.style.width = `${this.currentBarWidth}%`;
   }
 
   resetBar() {
