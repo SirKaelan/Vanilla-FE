@@ -2,6 +2,7 @@ export class ProgressBar {
   progressBarEl;
   percentLabelEl;
   currentBarWidth = 0;
+  roundedBorderCssClass = "rounded-bar-right";
 
   constructor(progressBarClass, percentLabelClass) {
     this.progressBarEl = document.querySelector(`.${progressBarClass}`);
@@ -12,6 +13,7 @@ export class ProgressBar {
     this.currentBarWidth = percentProgress;
     this.updateProgressBar();
     this.updatePercentLabel();
+    this.fullProgressBarBorderFix();
   }
 
   increaseBarProgress(percentIncrement) {
@@ -20,6 +22,7 @@ export class ProgressBar {
     this.currentBarWidth = newWidth;
     this.updateProgressBar();
     this.updatePercentLabel();
+    this.fullProgressBarBorderFix();
   }
 
   updatePercentLabel() {
@@ -34,6 +37,8 @@ export class ProgressBar {
     this.currentBarWidth = 0;
     this.progressBarEl.style.width = "0%";
     this.percentLabelEl.innerHTML = "0%";
+    if (this.progressBarEl.classList.contains(this.roundedBorderCssClass))
+      this.progressBarEl.classList.remove(this.roundedBorderCssClass);
   }
 
   calculateWidth(percentIncrement, operationType) {
@@ -43,8 +48,13 @@ export class ProgressBar {
     } else if (operationType === "subtraction") {
       newWidth = this.currentBarWidth - percentIncrement;
     }
-    // We don't want width to be over 100 or bellow 0 percent
+    // We don't want width to be over 100 or below 0 percent
     if (newWidth < 0 || newWidth > 100) return null;
     return newWidth;
+  }
+
+  fullProgressBarBorderFix() {
+    if (this.currentBarWidth !== 100) return;
+    this.progressBarEl.classList.add(this.roundedBorderCssClass);
   }
 }
