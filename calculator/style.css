@@ -1,0 +1,108 @@
+:root {
+  --calc-border-radius: 10px;
+}
+
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+button {
+  font: inherit;
+  background: none;
+  border: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: sans-serif;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Calculator styles */
+.calculator-container {
+  /* max-width: 150px; */
+  border-radius: var(--calc-border-radius);
+  box-shadow: 10px 9px 41px -9px rgba(0, 0, 0, 0.75);
+}
+
+.display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 1rem;
+
+  background-color: lightgray;
+  padding: 2rem;
+  border-top-left-radius: var(--calc-border-radius);
+  border-top-right-radius: var(--calc-border-radius);
+}
+
+.display-current {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+
+  padding: 3rem 2rem;
+}
+
+.calc-btn {
+  font-size: 2.5rem;
+
+  padding: 1.5rem 2rem;
+
+  cursor: pointer;
+  border-radius: 8px;
+
+  transition: background-color 0.1s ease-in-out;
+}
+
+.calc-btn:hover {
+  background-color: lightgray;
+}
+
+.operation {
+  color: #ffbf00;
+}
+
+.operation:hover {
+  color: white;
+}
+
+.backspace-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #ffbf00;
+  mask: url("assets/backspace-icon.svg") no-repeat center;
+}
+
+.clear,
+.zero {
+  grid-column: span 2;
+}
+.equals {
+  background-color: #ffbf00;
+  color: white;
+}
