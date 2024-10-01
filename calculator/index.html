@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
     <title>Calculator Project</title>
   </head>
   <body>
@@ -17,26 +18,26 @@
       </div>
       <!-- Buttons -->
       <div class="button-container">
-        <button class="calc-btn operation clear">C</button>
-        <button class="calc-btn operation">
+        <button data-input="clear" class="calc-btn operation clear">C</button>
+        <button data-input="delete" class="calc-btn operation">
           <div class="backspace-icon"></div>
         </button>
-        <button class="calc-btn operation">/</button>
-        <button class="calc-btn">7</button>
-        <button class="calc-btn">8</button>
-        <button class="calc-btn">9</button>
-        <button class="calc-btn operation">*</button>
-        <button class="calc-btn">4</button>
-        <button class="calc-btn">5</button>
-        <button class="calc-btn">6</button>
-        <button class="calc-btn operation">-</button>
-        <button class="calc-btn">1</button>
-        <button class="calc-btn">2</button>
-        <button class="calc-btn">3</button>
-        <button class="calc-btn operation">+</button>
-        <button class="calc-btn zero">0</button>
-        <button class="calc-btn">.</button>
-        <button class="calc-btn operation equals">=</button>
+        <button data-input="operator" class="calc-btn operation">/</button>
+        <button data-input="number" class="calc-btn">7</button>
+        <button data-input="number" class="calc-btn">8</button>
+        <button data-input="number" class="calc-btn">9</button>
+        <button data-input="operator" class="calc-btn operation">*</button>
+        <button data-input="number" class="calc-btn">4</button>
+        <button data-input="number" class="calc-btn">5</button>
+        <button data-input="number" class="calc-btn">6</button>
+        <button data-input="operator" class="calc-btn operation">-</button>
+        <button data-input="number" class="calc-btn">1</button>
+        <button data-input="number" class="calc-btn">2</button>
+        <button data-input="number" class="calc-btn">3</button>
+        <button data-input="operator" class="calc-btn operation">+</button>
+        <button data-input="number" class="calc-btn zero">0</button>
+        <button data-input="floating-point" class="calc-btn">.</button>
+        <button data-input="equals" class="calc-btn operation equals">=</button>
       </div>
     </div>
   </body>
