@@ -1,4 +1,8 @@
+import { Calculator } from "./Calculator.js";
+
 const buttons = document.querySelectorAll("[data-input]");
+
+const calc = new Calculator();
 
 buttons.forEach((button) => {
   const dataInputType = button.dataset.input;
@@ -6,32 +10,32 @@ buttons.forEach((button) => {
   switch (dataInputType) {
     case "number":
       button.addEventListener("click", () => {
-        console.log("Number clicked!");
+        calc.appendNumber(button.innerText);
       });
       break;
     case "operator":
       button.addEventListener("click", () => {
-        console.log("Operator clicked!");
+        calc.handleOperator(button.innerText);
       });
       break;
     case "clear":
       button.addEventListener("click", () => {
-        console.log("Clear clicked!");
+        calc.handleClear();
       });
       break;
-    case "delete":
+    case "backspace":
       button.addEventListener("click", () => {
-        console.log("Backspace clicked!");
+        calc.handleBackspace();
       });
       break;
     case "equals":
       button.addEventListener("click", () => {
-        console.log("Equals clicked!");
+        calc.handleEquals();
       });
       break;
-    case "floating-point":
+    case "decimal":
       button.addEventListener("click", () => {
-        console.log("Floating point clicked!");
+        calc.appendDecimal();
       });
       break;
     default:

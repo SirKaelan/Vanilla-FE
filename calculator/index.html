@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <script src="script.js" type="module" defer></script>
     <title>Calculator Project</title>
   </head>
   <body>
@@ -12,14 +12,14 @@
       <!-- Display -->
       <div class="display-container">
         <!-- History -->
-        <span class="display-history">48.5 * 65.7</span>
+        <span class="display-history"></span>
         <!-- Result -->
-        <span class="display-current">3,186.45</span>
+        <span class="display-current">0</span>
       </div>
       <!-- Buttons -->
       <div class="button-container">
         <button data-input="clear" class="calc-btn operation clear">C</button>
-        <button data-input="delete" class="calc-btn operation">
+        <button data-input="backspace" class="calc-btn operation">
           <div class="backspace-icon"></div>
         </button>
         <button data-input="operator" class="calc-btn operation">/</button>
@@ -36,7 +36,7 @@
         <button data-input="number" class="calc-btn">3</button>
         <button data-input="operator" class="calc-btn operation">+</button>
         <button data-input="number" class="calc-btn zero">0</button>
-        <button data-input="floating-point" class="calc-btn">.</button>
+        <button data-input="decimal" class="calc-btn">.</button>
         <button data-input="equals" class="calc-btn operation equals">=</button>
       </div>
     </div>

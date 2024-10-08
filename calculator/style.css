@@ -49,13 +49,19 @@ body {
   align-items: end;
   gap: 1rem;
 
+  height: 113px;
   background-color: lightgray;
   padding: 2rem;
   border-top-left-radius: var(--calc-border-radius);
   border-top-right-radius: var(--calc-border-radius);
 }
 
+.display-history {
+  height: 18px;
+}
+
 .display-current {
+  height: 45px;
   font-size: 4rem;
   font-weight: bold;
 }
