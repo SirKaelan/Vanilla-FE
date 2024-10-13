@@ -60,19 +60,21 @@ body {
   box-shadow: 10px 9px 41px -9px rgba(0, 0, 0, 0.75);
 }
 
+.display-wrapper {
+  font-size: 2rem;
+  padding: 1.5em 2.2em;
+  min-height: 11.3rem;
+  font-weight: 400;
+  border-top-left-radius: var(--calc-border-radius);
+  border-top-right-radius: var(--calc-border-radius);
+  overflow-x: hidden;
+}
+
 .display-container {
   display: flex;
   flex-direction: column;
   align-items: end;
   gap: 2.5rem;
-
-  font-size: 2rem;
-  min-height: 11.3rem;
-  padding: 1.5em 2.2em;
-  font-weight: 400;
-  border-top-left-radius: var(--calc-border-radius);
-  border-top-right-radius: var(--calc-border-radius);
-  overflow-x: hidden;
 }
 
 .display-history {
@@ -82,13 +84,6 @@ body {
 .display-current {
   font-size: 5rem;
   color: var(--text-color-lighter);
-  /* This changes the direction of text so scrollbar is stuck to the right */
-  direction: rtl;
-  /* This makes scrollbar work */
-  max-width: 100%;
-  /* Setting horizontal scroll to auto shows the vertical for some reason */
-  overflow-y: hidden;
-  overflow-x: auto;
 }
 
 .button-container {
