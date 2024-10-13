@@ -3,6 +3,7 @@ export class Calculator {
   historyClass = ".display-history";
   currentOpperandEl = null;
   historyEl = null;
+  maxOpperandSize = 32;
 
   currentOpperand = "";
   previousOpperand = "";
@@ -15,6 +16,8 @@ export class Calculator {
   }
 
   appendNumber(number) {
+    if (this.currentOpperand.length >= this.maxOpperandSize) return;
+
     if (
       this.lastKeyPressed === buttonTypeMap.operator ||
       this.lastKeyPressed === buttonTypeMap.equals
