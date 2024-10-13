@@ -1,30 +1,33 @@
 export class Calculator {
-  currentOpperandClass = ".display-current";
+  currentOperandClass = ".display-current";
   historyClass = ".display-history";
-  currentOpperandEl = null;
+  calcContainerClass = ".calculator-container";
+  currentOperandEl = null;
   historyEl = null;
-  maxOpperandSize = 32;
+  calcContainerEl = null;
+  maxOperandSize = 32;
 
-  currentOpperand = "";
-  previousOpperand = "";
+  currentOperand = "";
+  previousOperand = "";
   operator = null;
   lastKeyPressed = null;
 
   constructor() {
-    this.currentOpperandEl = document.querySelector(this.currentOpperandClass);
+    this.setCalcContainerWidth();
+    this.currentOperandEl = document.querySelector(this.currentOperandClass);
     this.historyEl = document.querySelector(this.historyClass);
   }
 
   appendNumber(number) {
-    if (this.currentOpperand.length >= this.maxOpperandSize) return;
+    if (this.currentOperand.length >= this.maxOperandSize) return;
 
     if (
       this.lastKeyPressed === buttonTypeMap.operator ||
       this.lastKeyPressed === buttonTypeMap.equals
     ) {
-      this.currentOpperand = number;
+      this.currentOperand = number;
     } else {
-      this.currentOpperand += number;
+      this.currentOperand += number;
     }
 
     this.lastKeyPressed = buttonTypeMap.number;
@@ -32,9 +35,9 @@ export class Calculator {
   }
 
   appendDecimal() {
-    if (!this.currentOpperand.includes(".")) {
-      this.currentOpperand =
-        this.currentOpperand === "" ? "0." : this.currentOpperand + ".";
+    if (!this.currentOperand.includes(".")) {
+      this.currentOperand =
+        this.currentOperand === "" ? "0." : this.currentOperand + ".";
     }
 
     this.lastKeyPressed = buttonTypeMap.decimal;
@@ -42,22 +45,22 @@ export class Calculator {
   }
 
   handleOperator(operator) {
-    if (this.currentOpperand.endsWith("."))
-      this.currentOpperand = this.currentOpperand.slice(0, -1);
+    if (this.currentOperand.endsWith("."))
+      this.currentOperand = this.currentOperand.slice(0, -1);
 
-    if (this.currentOpperand && this.previousOpperand) this.computeResult();
+    if (this.currentOperand && this.previousOperand) this.computeResult();
 
     this.operator = operatorSymbolMap[operator] || operator;
-    this.previousOpperand = this.currentOpperand
-      ? this.currentOpperand
-      : this.previousOpperand;
-    this.currentOpperand = "";
+    this.previousOperand = this.currentOperand
+      ? this.currentOperand
+      : this.previousOperand;
+    this.currentOperand = "";
     this.lastKeyPressed = buttonTypeMap.operator;
     this.updateDisplay();
   }
 
   handleEquals() {
-    if (this.previousOpperand && this.operator && this.currentOpperand) {
+    if (this.previousOperand && this.operator && this.currentOperand) {
       this.computeResult();
       this.lastKeyPressed = buttonTypeMap.equals;
       this.updateDisplay();
@@ -65,8 +68,8 @@ export class Calculator {
   }
 
   computeResult() {
-    const prev = parseFloat(this.previousOpperand);
-    const current = parseFloat(this.currentOpperand);
+    const prev = parseFloat(this.previousOperand);
+    const current = parseFloat(this.currentOperand);
 
     if (isNaN(prev) || isNaN(current)) return;
 
@@ -92,35 +95,41 @@ export class Calculator {
         break;
     }
 
-    this.currentOpperand = computation.toString();
-    this.previousOpperand = "";
+    this.currentOperand = computation.toString();
+    this.previousOperand = "";
     this.operator = null;
   }
 
   handleClear() {
-    this.currentOpperand = "";
-    this.previousOpperand = "";
+    this.currentOperand = "";
+    this.previousOperand = "";
     this.operator = null;
     this.lastKeyPressed = null;
     this.updateDisplay();
   }
 
   handleBackspace() {
-    this.currentOpperand = this.currentOpperand.slice(0, -1);
+    this.currentOperand = this.currentOperand.slice(0, -1);
     this.updateDisplay();
   }
 
   updateDisplay() {
-    this.currentOpperandEl.textContent =
-      this.currentOpperand || this.previousOpperand || "0";
-    if (this.previousOpperand && this.operator) {
-      this.historyEl.textContent = `${this.previousOpperand} ${getKeyByValue(
+    this.currentOperandEl.textContent =
+      this.currentOperand || this.previousOperand || "0";
+    if (this.previousOperand && this.operator) {
+      this.historyEl.textContent = `${this.previousOperand} ${getKeyByValue(
         operatorSymbolMap,
         this.operator
       )}`;
     } else {
       this.historyEl.textContent = "";
     }
+  }
+
+  setCalcContainerWidth() {
+    this.calcContainerEl = document.querySelector(this.calcContainerClass);
+    const calculatedWidth = this.calcContainerEl.offsetWidth;
+    this.calcContainerEl.style.maxWidth = `${calculatedWidth}px`;
   }
 }
 
