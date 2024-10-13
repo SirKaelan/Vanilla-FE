@@ -16,15 +16,15 @@ export class Calculator {
 
   appendNumber(number) {
     if (
-      this.lastKeyPressed === keyPressMap.operator ||
-      this.lastKeyPressed === keyPressMap.equals
+      this.lastKeyPressed === buttonTypeMap.operator ||
+      this.lastKeyPressed === buttonTypeMap.equals
     ) {
       this.currentOpperand = number;
     } else {
       this.currentOpperand += number;
     }
 
-    this.lastKeyPressed = keyPressMap.number;
+    this.lastKeyPressed = buttonTypeMap.number;
     this.updateDisplay();
   }
 
@@ -34,7 +34,7 @@ export class Calculator {
         this.currentOpperand === "" ? "0." : this.currentOpperand + ".";
     }
 
-    this.lastKeyPressed = keyPressMap.decimal;
+    this.lastKeyPressed = buttonTypeMap.decimal;
     this.updateDisplay();
   }
 
@@ -44,19 +44,19 @@ export class Calculator {
 
     if (this.currentOpperand && this.previousOpperand) this.computeResult();
 
-    this.operator = operator;
+    this.operator = operatorSymbolMap[operator] || operator;
     this.previousOpperand = this.currentOpperand
       ? this.currentOpperand
       : this.previousOpperand;
     this.currentOpperand = "";
-    this.lastKeyPressed = keyPressMap.operator;
+    this.lastKeyPressed = buttonTypeMap.operator;
     this.updateDisplay();
   }
 
   handleEquals() {
     if (this.previousOpperand && this.operator && this.currentOpperand) {
       this.computeResult();
-      this.lastKeyPressed = keyPressMap.equals;
+      this.lastKeyPressed = buttonTypeMap.equals;
       this.updateDisplay();
     }
   }
@@ -111,16 +111,30 @@ export class Calculator {
     this.currentOpperandEl.textContent =
       this.currentOpperand || this.previousOpperand || "0";
     if (this.previousOpperand && this.operator) {
-      this.historyEl.textContent = `${this.previousOpperand} ${this.operator}`;
+      this.historyEl.textContent = `${this.previousOpperand} ${getKeyByValue(
+        operatorSymbolMap,
+        this.operator
+      )}`;
     } else {
       this.historyEl.textContent = "";
     }
   }
 }
 
-const keyPressMap = {
+const buttonTypeMap = {
   number: "number",
   decimal: "decimal",
   operator: "operator",
   equals: "equals",
+};
+
+const operatorSymbolMap = {
+  "×": "*",
+  "÷": "/",
+  "+": "+",
+  "-": "-",
+};
+
+const getKeyByValue = (obj, val) => {
+  return Object.keys(obj).find((key) => obj[key] === val);
 };
